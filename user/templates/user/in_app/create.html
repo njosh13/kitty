@@ -1,0 +1,93 @@
+{%  extends 'user/in_app/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block stylesheet %}
+<!-- Custom styles for this page -->
+<link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block page_title %}
+    <h1 class="h3 mb-0 text-gray-800">Create user</h1>
+{% endblock %}
+
+{% block content %}
+    
+
+    <!-- Begin Page Content -->
+    <div class="card card-primary card-outline">
+    <div class="container-fluid">
+        <div class="card-body">
+
+        <!-- Page Heading -->
+        <!-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+        <p class="mb-4">This table represents the data collected over the mobile application phone.</p> -->
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username</label>
+                <input type="text" name="username" class="form-control" id="exampleInputEmail1" 
+                aria-describedby="emailHelp" placeholder="Enter username" required>
+                {{ form.errors|crispy }}
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">First name</label>
+                <input type="text" name="first_name" class="form-control" id="exampleInputEmail1" 
+                aria-describedby="emailHelp" placeholder="Enter first name" 
+                required>
+                {{ form.errors|crispy}}
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Last name</label>
+                <input type="text" name="last_name" class="form-control" id="exampleInputEmail1" 
+                aria-describedby="emailHelp" placeholder="Enter last name" 
+                required>
+                {{ form.last_name.errors|crispy }}
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" 
+                aria-describedby="emailHelp" placeholder="Enter email" 
+                required>
+                {{ form.email.errors|crispy }}
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                {{ form.password.errors|crispy }}
+            </div>
+
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">Confirm password</label>
+                <input type="password" name="password1" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                {{ form.password1.errors|crispy }}
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br>
+        </form>
+
+    </div>
+    </div>
+    </div>
+    <br>
+    <!-- /.container-fluid -->
+    <!-- End of Main Content -->
+    
+
+{% endblock %}
+
+{% block script %}
+ <!-- Page level plugins -->
+ <script src="{% static 'vendor/datatables/jquery.dataTables.min.js'%}"></script>
+ <script src="{%static 'vendor/datatables/dataTables.bootstrap4.min.js'%}"></script>
+
+ <!-- Page level custom scripts -->
+{% endblock %}

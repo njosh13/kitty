@@ -1,0 +1,52 @@
+  {% load static %} 
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{% url 'index:index' %}" class="brand-link">
+      <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="" width="50" height="50">
+      <div>
+      <span class="brand-text font-weight-light"> <i><b>Smart interactor </b></i> </span>
+      </div>
+    </a>
+   
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/avatar2.png' %}" class="img-circle elevation-2" alt="">
+        </div>
+        <div class="info">
+          <span><a href="#"  class="brand-text font-weight-light"> <b> {{ user.username}}  </b>  </a> </span>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="{% url 'user:users' %}" class="nav-link">
+              <i class="fas fa-users">
+              <p>
+                users
+              </p>
+              </i>
+            </a>
+          </li>
+
+
+ 
+
+
+
+
+
+
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

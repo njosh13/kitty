@@ -1,0 +1,22 @@
+{%  extends 'user/index/base.html' %}
+
+{% block content %}
+
+<div class="page-header clear-filter">
+    <div class="page-header-image" style="background-image: url('/static/img/jan-sendereks.jpg');"></div>
+    <div class="container text-center">
+      
+      <div class="col-md-8 ml-auto mr-auto">
+        <div class="brand">
+          <h1 class="title">
+            Cousin's Kitty Dashboard 
+          </h1>
+          <h3 class="description">Welcome to the Cousins' Kitty. Procced to  Log in </h3>
+          <br />
+          <a href="{% url 'login' %}" class="btn btn-secondary btn-round btn-lg"> Log In </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}

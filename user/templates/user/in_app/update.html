@@ -1,0 +1,137 @@
+{%  extends 'user/in_app/base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<!-- Custom styles for this page -->
+<link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block page_title %}
+    <h1 class="h3 mb-0 text-gray-800">Update user</h1>
+{% endblock %}
+
+{% block create %}
+    <a href="{% url 'user:users_delete' user.id %}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-user-plus fa-sm text-white-50"></i> Delete user</a>
+{% endblock %}
+
+{% block content %}
+    
+    
+    <!-- Begin Page Content -->
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <!-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                <p class="mb-4">This table represents the data collected over the mobile application phone.</p> -->
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        {% if form.username.help_text %}
+                            <p class="help">{{ form.username.help_text|safe }}</p>
+                        {% endif %}
+                        <input type="text" name="username" class="form-control" id="exampleInputEmail1" 
+                        aria-describedby="emailHelp" placeholder="Enter username" value="{{user.username}}" 
+                        required>
+                        {{ form.username.errors }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">First name</label>
+                        {% if form.first_name.help_text %}
+                            <p class="help">{{ form.first_name.help_text|safe }}</p>
+                        {% endif %}
+                        <input type="text" name="first_name" class="form-control" id="exampleInputEmail1" 
+                        aria-describedby="emailHelp" placeholder="Enter first name" value="{{user.first_name}}" 
+                        required>
+                        {{ form.first_name.errors }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Last name</label>
+                        {% if form.last_name.help_text %}
+                            <p class="help">{{ form.last_name.help_text|safe }}</p>
+                        {% endif %}
+                        <input type="text" name="last_name" class="form-control" id="exampleInputEmail1" 
+                        aria-describedby="emailHelp" placeholder="Enter last name" value="{{user.last_name}}" 
+                        required>
+                        {{ form.last_name.errors }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        {% if form.email.help_text %}
+                            <p class="help">{{ form.email.help_text|safe }}</p>
+                        {% endif %}
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" 
+                        aria-describedby="emailHelp" placeholder="Enter email" value="{{user.email}}" 
+                        required>
+                        {{ form.email.errors }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <!-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                <p class="mb-4">This table represents the data collected over the mobile application phone.</p> -->                
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form_pass.non_field_errors }}
+
+                    <div class="form-group">
+                        {% if form.old_password.help_text %}
+                            <p class="help">{{ form_pass.old_password.help_text|safe }}</p>
+                        {% endif %}
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" name="old_password" class="form-control" id="exampleInputPassword1" placeholder="Old password">
+                        {{ form_pass.old_password.errors }}
+                    </div>
+
+                    <div class="form-group">
+                        {% if form.new_password1.help_text %}
+                            <p class="help">{{ form_pass.new_password1.help_text|safe }}</p>
+                        {% endif %}
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" name="new_password1" class="form-control" id="exampleInputPassword1" placeholder="New password">
+                        {{ form_pass.new_password1.errors }}
+                    </div>
+
+                    <div class="form-group">
+                        {% if form_pass.new_password2.help_text %}
+                            <p class="help">{{ form_pass.new_password2.help_text|safe }}</p>
+                        {% endif %}
+                        <label for="exampleInputPassword1">Confrm password</label>
+                        <input type="password" name="new_password2" class="form-control" id="exampleInputPassword1" placeholder="Confirm new password">
+                        {{ form_pass.new_password2.errors }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+    
+
+{% endblock %}
+
+{% block script %}
+ <!-- Page level plugins -->
+ <script src="{% static 'vendor/datatables/jquery.dataTables.min.js'%}"></script>
+ <script src="{%static 'vendor/datatables/dataTables.bootstrap4.min.js'%}"></script>
+
+ <!-- Page level custom scripts -->
+{% endblock %}

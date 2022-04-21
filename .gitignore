@@ -1,0 +1,19 @@
+# https://flask.palletsprojects.com/en/2.0.x/tutorial/layout/
+venv/
+kittyvenv/
+enigmadcdvenv/
+
+*.pyc
+ __pycache__/
+
+instance/
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+dist/
+build/
+*.egg-info/
+
+db.sqlite3

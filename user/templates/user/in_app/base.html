@@ -1,0 +1,115 @@
+{% if user.is_authenticated %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart Interactor</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+  {% block stylesheet%}
+  
+  {% endblock %}
+</head>
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+  <!-- Navbar -->
+    {% include 'user/in_app/partials/_navbar.html' %}
+  <!-- /.navbar -->
+
+
+  <!-- Main Sidebar Container -->
+     {% include 'user/in_app/partials/_sidebar.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    
+      <div class="container-fluid">
+        <div class="content-header">   
+        <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            
+            {% block page_title %}
+              <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            {% endblock %}
+            
+            {% block create %}
+              
+            {% endblock %}
+          
+          </div>
+          
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    
+    <!-- /.content-header -->
+    
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+          {% block content %}
+
+          {% endblock %}
+
+
+          
+
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  {% include 'user/in_app/partials/_footer.html' %}
+
+</div>
+
+
+
+
+
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+
+<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+{% block script %}
+
+{% endblock %}
+</body>
+</html>
+
+{% else %}
+<meta http-equiv = "refresh" content = "0; url = /login" />
+{%endif%}

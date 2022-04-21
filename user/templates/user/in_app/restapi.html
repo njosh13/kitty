@@ -1,0 +1,109 @@
+{%  extends 'user/in_app/base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<!-- Custom styles for this page -->
+<link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block page_title %}
+        <h1 class="h3 mb-0 text-gray-800">Users</h1>
+{% endblock %}
+
+{% block create %}
+    <a href="{% url 'user:users_create' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-user-plus fa-sm text-white-50"></i> Create user</a>
+{% endblock %}
+
+{% block content %}
+    <!-- Begin Page Content -->
+    <div class="card card-primary card-outline">
+    <div class="container-fluid">
+
+        <!-- DataTales Example -->
+        
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Users</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <td>ID</td>
+                            <td>UserName</td>
+                            <td>First Name</td>
+                            <td>Last Name</td>
+                            <td>Email</td>
+                        </thead>
+                        
+                        <tbody>
+                            <!-- populated with javascript using axios, see further down -->
+                        </tbody>
+                        <tfoot>
+                            <td>ID</td>
+                            <td>UserName</td>
+                            <td>First Name</td>
+                            <td>Last Name</td>
+                            <td>Email</td>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        
+
+    </div>
+    <!-- /.container-fluid -->
+    </div>
+    
+    <!-- End of Main Content -->
+    
+
+{% endblock %}
+
+{% block script %}
+ <!-- Page level plugins -->
+ <script src="{% static 'vendor/datatables/jquery.dataTables.min.js'%}"></script>
+ <script src="{%static 'vendor/datatables/dataTables.bootstrap4.min.js'%}"></script>
+
+ <!-- Page level custom scripts -->
+ <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+ <script>
+    //  TODO https://axios-http.com/docs/example
+    // Optionally the request above could also be done as
+    axios.get('api/users', {
+        params: {
+        ID: 12345
+        }
+    })
+    .then(function (response) {
+        // console.log(response);
+        // console.log(response.data);
+
+        // https://axios-http.com/docs/res_schema
+        const array = response.data
+        for (let index = 0; index < array.length; index++) {
+            // const element = array[index];
+            const user = array[index];
+            // https://api.jquery.com/append/
+            $('table#dataTable tbody').first().append(
+                `<tr>
+                    <td><a href="/user/update/${user.id}">${user.id}</a></td>
+                    <td>${user.username}</td>
+                    <td>${user.first_name}</td>
+                    <td>${user.last_name}</td>
+                    <td>${user.email}</td>
+                </tr>`
+            )
+        }
+
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+    })
+    .catch(function (error) {
+        console.log(error);
+    })
+    .then(function () {
+        // always executed
+    }); 
+ </script>
+{% endblock %}
